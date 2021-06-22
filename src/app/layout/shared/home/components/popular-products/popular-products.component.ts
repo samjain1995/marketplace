@@ -64,6 +64,8 @@ export class PopularProductsComponent implements OnInit, OnDestroy {
     })
 
     this.cartSubscription = this.utilityService.getCart.subscribe(cart => {
+        console.log(cart);
+        
       if (cart) {
         this.cart = cart;
         this.mapProduct(this.popularProducts);
@@ -113,6 +115,8 @@ export class PopularProductsComponent implements OnInit, OnDestroy {
 
     this.http.getData(ApiUrl.getPopularProduct, queryParams, true, !this.settings.isCustomFlow).subscribe((serverResponse) => {
       if (serverResponse && serverResponse.status == 200) {
+        console.log(serverResponse.data.product);
+        
         this.mapProduct(serverResponse.data.product);
       }
       this.isLoading = false;

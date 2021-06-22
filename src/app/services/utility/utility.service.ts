@@ -90,6 +90,7 @@ export class UtilityService {
   private settings: BehaviorSubject<AppSettings> = new BehaviorSubject(null);
   getSettings: Observable<AppSettings> = this.settings.asObservable();
   setSettings(data: AppSettings) {
+    data.app_type = 2;
     this.settings.next(data);
   }
 

@@ -5,7 +5,12 @@
         <ng-container *ngFor="let item of products">
             <li class="menu" *ngFor="let product of item.products">
                 <a href="javascript:;" class="storemap">
-                    <span>{{product.name}}</span>
+                    <span>
+                        <img [src]="product.logo" width="15" height="15" alt="">
+                       </span>
+                       <span style=" margin-left: 5px; margin-bottom: 2px; font-size: 14px;">
+                        {{product.name}}
+                       </span>
                 </a>
             </li>
             <hr>

@@ -1,8 +1,7 @@
 <ng-container *ngIf="settings?.site_logo; then default else custom"></ng-container>
 
 <ng-template #default>
-    <img appImage [url]="settings?.site_logo" [size]="size" [src]="settings?.site_logo" [noCrop]="true" alt="logo" [settings]="settings"
-        style="object-fit: contain; width: 100%;" [style.height.px]="settings?.setlogoHeight ? settings?.logoHeight : height">
+    <img appImage [url]="settings?.site_logo" [size]="size" [src]="settings?.site_logo" [noCrop]="true" alt="logo" [settings]="settings" [style.height.px]="settings?.setlogoHeight ? settings?.logoHeight : height">
 </ng-template>
 
 <ng-template #custom>

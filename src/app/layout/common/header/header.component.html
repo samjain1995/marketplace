@@ -83,7 +83,7 @@
         <nav class="navbar navbar-expand-md"
           [style.background-color]="settings?.app_type == 7 ? '#4A4A4A' : is_dark ?  style.backgroundColor : style?.headerBackgroundColor || style.backgroundColor"
           [ngClass]="isNavFixed ? 'fix' : ''">
-          <div class="container">
+          <div class="container-fluid">
             <div class="row w-100">
               <div class="col-md-2 col-6">
                 <a class="navbar-brand cursor" (click)="onLogo()">
