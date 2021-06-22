@@ -12,6 +12,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AddOnComponent } from '../../../product/components/add-on/add-on.component';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-popular-products',
@@ -52,7 +53,10 @@ export class PopularProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
+    $(".product-container").click(() => {
+      console.log("oooooooooo");
+      
+    })
     this.styleSubscription = this.utilityService.getStyles.subscribe((style: StyleVariables) => {
       this.style = style;
     })
