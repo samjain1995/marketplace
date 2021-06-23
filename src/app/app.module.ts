@@ -16,6 +16,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { CartInitModule } from '@sh_mayank/cart-init';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 /********** Declarations **********/
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -75,6 +76,7 @@ export function initializeApp(appInitService: AppLoadService) {
     CartInitModule.forRoot(environment),
     AppRoutingModule,
     SharedModule,
+    ModalModule.forRoot()
   ],
   providers: [
     // {

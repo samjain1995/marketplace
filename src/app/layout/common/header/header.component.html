@@ -145,6 +145,9 @@
                             [settings]="settings" [openAuth]="openAuth" (searchBar)="showSearchbar = $event"
                             (triggerAuthModal)="openAuth = $event" (authType)="authType = $event"
                             (sideNavToggle)="sidenav = $event;"></app-function-list>
+                            <div style="background-color: #eff2f5;">
+                              <app-product-sidebar *ngIf="myflag" [sidenav]="sidenav"></app-product-sidebar>
+                            </div>
                           <div *ngIf="showSearchbar">
                             <form autocomplete="off" class="dropdown_resp">
                               <input class="dropdown-toggle" type="text"

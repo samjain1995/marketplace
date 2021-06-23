@@ -8,7 +8,7 @@ import { StyleVariables } from "./../core/theme/styleVariables.model";
 import { StyleConstants } from "./../core/theme/styleConstants.model";
 import { UtilityService } from "./../services/utility/utility.service";
 import { HttpService } from "./../services/http/http.service";
-import { Component, OnInit, HostListener, Inject, PLATFORM_ID, NgZone, AfterViewInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, HostListener, Inject, PLATFORM_ID, NgZone, AfterViewInit, OnDestroy, OnChanges, SimpleChanges } from "@angular/core";
 import { Router } from "@angular/router";
 import { AppHandler } from "./../shared/models/appHandler.model";
 import { ApiKeys } from "../shared/models/apiKeys.model";
@@ -20,13 +20,14 @@ import { FirebaseAnalyticsService } from '../services/firebase-analytics/firebas
 import { UserService } from '../services/user/user.service';
 import { AuthService } from 'angularx-social-login';
 import { Meta } from '@angular/platform-browser';
+import * as $ from 'jquery';
 
 @Component({
   selector: "app-layout",
   templateUrl: "./layout.component.html",
   styleUrls: ["./layout.component.scss"]
 })
-export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
+export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   body: StyleConstants;
   style: StyleVariables;
   settings: AppSettings;
@@ -55,6 +56,8 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   userData: any;
 
   isBrowser: boolean = false;
+  windowInnerWidth: number = 0;
+  myflag: boolean = false;
 
   constructor(
     private ngZone: NgZone,
@@ -75,6 +78,9 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     this.body = new StyleConstants();
     this.style = new StyleVariables();
   }
+  ngOnChanges(changes: SimpleChanges): void {
+
+  }
 
   @HostListener("window:scroll", ["$event"])
   onScroll() {
@@ -86,6 +92,15 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
+    $(window).on('resize', () => {
+      this.windowInnerWidth = window.innerWidth;
+      if (this.windowInnerWidth <= 812) {
+        this.myflag = true;
+      } else {
+        this.myflag = false;
+      }
+    })
+    this.windowInnerWidth = window.innerWidth;
     this.styleSubscription = this.util.getStyles.subscribe(style => {
       this.style = style;
       this.body.fontFamily = style.fontFamily;

@@ -14,6 +14,7 @@ import { ApiUrl } from './../../../core/apiUrl';
 import { Router, ActivatedRoute, NavigationEnd, Event, NavigationStart } from '@angular/router';
 import { GlobalVariable } from './../../../core/global';
 import { DOCUMENT } from "@angular/common";
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-header',
@@ -64,6 +65,8 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   is_mobile: boolean = GlobalVariable.IS_MOBILE;
   public userWalletBalance: number = 0;
   isNavigating: boolean = false;
+  windowInnerWidth: number;
+  myflag: boolean;
 
   constructor(
     private http: HttpService,
@@ -80,6 +83,14 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit() {
+    $(window).on('resize', () => {
+      this.windowInnerWidth = window.innerWidth;
+      if (this.windowInnerWidth <= 812) {
+        this.myflag = true;
+      } else {
+        this.myflag = false;
+      }
+    })
     this.subscriptions();
     let localSearchData = this.util.getLocalData('product-search', true);
     if (localSearchData) this.localSearchedData = localSearchData;

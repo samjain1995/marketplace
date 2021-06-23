@@ -8,7 +8,7 @@ import { UtilityService } from './../../../../../services/utility/utility.servic
 import { CartService } from './../../../../../services/cart/cart.service';
 import { StyleVariables } from './../../../../../core/theme/styleVariables.model';
 import { AppSettings } from './../../../../../shared/models/appSettings.model';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AddOnComponent } from '../../../product/components/add-on/add-on.component';
@@ -22,7 +22,6 @@ import * as $ from 'jquery';
 export class PopularProductsComponent implements OnInit, OnDestroy {
 
   isLoading: boolean = false;
-
   cart: Array<any> = [];
   categories: Array<any> = [];
 
@@ -38,7 +37,7 @@ export class PopularProductsComponent implements OnInit, OnDestroy {
   cartSubscription: Subscription;
   categorySubscription: Subscription;
   locationSubscription: Subscription;
-
+flag: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private cartService: CartService,
@@ -47,16 +46,10 @@ export class PopularProductsComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private data_cache: DataCacheService,
     public dialogService: DialogService
-
   ) {
     this.style = new StyleVariables();
   }
-
   ngOnInit(): void {
-    $(".product-container").click(() => {
-      console.log("oooooooooo");
-      
-    })
     this.styleSubscription = this.utilityService.getStyles.subscribe((style: StyleVariables) => {
       this.style = style;
     })
@@ -68,8 +61,8 @@ export class PopularProductsComponent implements OnInit, OnDestroy {
     })
 
     this.cartSubscription = this.utilityService.getCart.subscribe(cart => {
-        console.log(cart);
-        
+      console.log(cart);
+
       if (cart) {
         this.cart = cart;
         this.mapProduct(this.popularProducts);
@@ -120,7 +113,7 @@ export class PopularProductsComponent implements OnInit, OnDestroy {
     this.http.getData(ApiUrl.getPopularProduct, queryParams, true, !this.settings.isCustomFlow).subscribe((serverResponse) => {
       if (serverResponse && serverResponse.status == 200) {
         console.log(serverResponse.data.product);
-        
+
         this.mapProduct(serverResponse.data.product);
       }
       this.isLoading = false;

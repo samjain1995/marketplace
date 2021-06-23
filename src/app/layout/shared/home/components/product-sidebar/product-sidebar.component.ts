@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-product-sidebar',
   templateUrl: './product-sidebar.component.html',
   styleUrls: ['./product-sidebar.component.scss']
 })
-export class ProductSidebarComponent implements OnInit {
+export class ProductSidebarComponent implements OnInit, OnChanges {
 
+  @Input('sidenav') sidenav = '';
+  @Output() sidenavStatus = new EventEmitter<number>();
   //  products: any = { category: { name: '', products: [] } };
   products: Array<any> = [
     {
@@ -58,6 +60,12 @@ export class ProductSidebarComponent implements OnInit {
   ];
 
   constructor() { }
+  ngOnChanges(changes: SimpleChanges): void {
+   this.sidenav = changes.sidenav.currentValue;
+   console.log(this.sidenav);
+   
+   this.sidenavStatus.emit(Number(this.sidenav))
+  }
 
   ngOnInit() {
     // this.getProducts();

@@ -2515,6 +2515,7 @@ section.marketplace-categories {
 
 .modal-content {
   padding: 20px;
+  color: black;
 }
 
 .modal-header {
@@ -4596,6 +4597,7 @@ body .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-list-item.ui
   }
   .language-dropdown .dropdown-menu.drop-menu.show {
     min-width: 7rem;
+    margin-left: -5rem;
   }
   .ecom-header .megamenu li.dropdown.mega-dropdown {
     margin-left: 0px;
