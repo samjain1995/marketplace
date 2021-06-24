@@ -15,7 +15,6 @@ import { EcomMegaMenuComponent } from './components/ecom-mega-menu/ecom-mega-men
 import { ClickOutsideModule } from 'ng-click-outside';
 import { BannerVideoComponent } from './components/banner-video/banner-video.component';
 import { FlashSaleComponent } from './components/flash-sale/flash-sale.component';
-import { ProductDetailComponent } from '../../pages/products/product-detail/product-detail.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 const components = [
@@ -27,8 +26,7 @@ const components = [
   SingleVendorComponent,
   EcomMegaMenuComponent,
   BannerVideoComponent,
-  FlashSaleComponent,
-  ProductDetailComponent
+  FlashSaleComponent
 ]
 
 @NgModule({

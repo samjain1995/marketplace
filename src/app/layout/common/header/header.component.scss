@@ -36,7 +36,7 @@ a {
   padding: 0.5rem 0.5rem !important;
 }
 .home_sidenav {
-  background-color: #eff2f5 !important;
+  background-color: rgb(90, 190, 219) !important;
     width: 250px;
 }
 
@@ -78,5 +78,10 @@ a {
   a.closebtn,
   .open_menu {
     display: block !important;
+  }
+
+  .home_sidenav {
+    background-color: #eff2f5 !important;
+      width: 250px;
   }
 }
