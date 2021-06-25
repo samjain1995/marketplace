@@ -59,6 +59,7 @@ import { AboutUsNewComponent } from './pages/about-us-new/about-us-new.component
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { ProductSidebarComponent } from './shared/home/components/product-sidebar/product-sidebar.component';
 import { RightSidebarComponent } from './shared/home/components/right-sidebar/right-sidebar.component';
+import { CommonModule } from '@angular/common';
 
 
 export function getAuthServiceConfigs() {
@@ -129,6 +130,7 @@ export function getAuthServiceConfigs() {
     RightSidebarComponent
   ],
   imports: [
+    CommonModule,
     LayoutSharedModule,
     AngularFireModule.initializeApp(GlobalVariable.FIREBASE_CONFIG),
     LandingModule,

@@ -23,6 +23,7 @@ import { CartGiftCardsComponent } from './components/cart-gift-cards/cart-gift-c
 import { DeliveryAddressDetailComponent } from './components/delivery-address-detail/delivery-address-detail.component';
 import { LoyaltyDiscountComponent } from './components/loyalty-discount/loyalty-discount.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
     LoyaltyDiscountComponent
   ],
   imports: [
+    CommonModule,
     CartSharedModule,
     OnlinePaymentModule,
     CartRoutingModule,

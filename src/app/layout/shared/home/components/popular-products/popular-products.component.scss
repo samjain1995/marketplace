@@ -105,7 +105,12 @@
   }
 
   .right-section::after {
-    background-image: linear-gradient(0deg,#fff,hsla(0,0%,100%,0));
+    background-image: linear-gradient(
+0deg
+,#fff,hsla(0,0%,100%,0)) !important;
+    bottom: -.0625rem !important;
+    margin-top: -2.75rem !important;
+    height: 2.75rem !important;
   }
 
   .heading {

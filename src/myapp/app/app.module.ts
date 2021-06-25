@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { AppLoadService } from './services/app-load/app-load.service';
 import { TimeoutInterceptor, DEFAULT_TIMEOUT } from './core/interceptors/timeout.interceptor';
-import { environment } from './../environments/environment';
+import { environment } from '../../environments/environment';
 
 /********** Imports **********/
 import { NgtUniversalModule } from '@ng-toolkit/universal';

@@ -1717,6 +1717,12 @@ footer {
 .useful-links ul li a {
   color: #ffffffa1;
 }
+.app-images {
+  display: flex;
+}
+.app-images>a {
+  margin: 0 15px;
+}
 .app-images a img {
   // width: 140px;
   display: flow-root;

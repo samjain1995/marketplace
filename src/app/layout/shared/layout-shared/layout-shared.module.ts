@@ -46,6 +46,7 @@ import { SupplierPriceSortingComponent } from './components/supplier-price-sorti
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { SkeletonModule } from './skeletons/skeleton.module';
 import { LoaderSharedModule } from './components/processing-indicator/loader-shared.module';
+import { CommonModule } from '@angular/common';
 
 
 const directives = [
@@ -96,6 +97,7 @@ const components = [
     ...directives
   ],
   imports: [
+    CommonModule,
     RatingModule,
     SidebarModule,
     PickerModule,

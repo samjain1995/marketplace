@@ -37,7 +37,9 @@ export class PopularProductsComponent implements OnInit, OnDestroy {
   cartSubscription: Subscription;
   categorySubscription: Subscription;
   locationSubscription: Subscription;
-flag: boolean = false;
+  flag: boolean = false;
+  recentlyViewed: Array<any> = [];
+  currentProduct: any = {};
   constructor(
     private route: ActivatedRoute,
     private cartService: CartService,
@@ -45,7 +47,8 @@ flag: boolean = false;
     private http: HttpService,
     private userService: UserService,
     private data_cache: DataCacheService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private util: UtilityService
   ) {
     this.style = new StyleVariables();
   }
@@ -92,6 +95,42 @@ flag: boolean = false;
       this.fetch();
     });
 
+    this.getRecent();
+
+  }
+
+  getRecent() {
+    let params = {
+      latitude: this.util.handler.latitude || 0,
+      longitude: this.util.handler.longitude || 0,
+      languageId: this.util.handler.languageId,
+      offset: 0
+    }
+
+    this.http.getData(ApiUrl.recentlyViewed, params)
+      .subscribe(response => {
+        if (!!response && response.data) {
+          this.recentlyViewed = response.data.recentActivity;
+          this.recentlyViewed.forEach(e => {
+            e.avg_rating = [];
+            let avg = Math.floor(Math.random() * 5);
+            for(let i = 0; i <= avg; i++) {
+              e.avg_rating.push(i);
+            }
+            console.log(e.avg_rating);
+            if(isNaN(e.price)) {
+              e.price = e.price[0].price_per_hour;
+            }
+            if(!e.image_path.includes('.png') && !e.image_path.includes('.jpg') && !e.image_path.includes('.jpeg') && !e.image_path.includes('.gif')) {
+              e.image_path = 'https://mahadevfastfoodvns.websites.co.in/twenty-seventeen/img/product-placeholder.png';
+            }
+          })
+        }
+      });
+  }
+
+  public getCurrentProduct(item) {
+    this.currentProduct = item;
   }
 
   fetch() {

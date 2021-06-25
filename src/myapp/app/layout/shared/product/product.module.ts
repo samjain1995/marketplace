@@ -3,6 +3,7 @@ import { ProductListingComponent } from './../../pages/products/product-listing/
 import { BaseProduct } from './components/product/template/base-product.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { ProductComponent } from './components/product/product.component';
 import { ProductSkeletonComponent } from './components/product-skeleton/product-skeleton.component';
 import { FoodComponent } from './components/product/template/food/food.component';
@@ -11,6 +12,7 @@ import { DescriptionComponent } from './components/description/description.compo
 import { AddOnComponent } from './components/add-on/add-on.component';
 import { LayoutSharedModule } from '../layout-shared/layout-shared.module';
 import { HomeServiceComponent } from './components/product/template/home-service/home-service.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const components = [
   ProductComponent,
@@ -31,6 +33,7 @@ const components = [
   ],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     LayoutSharedModule
   ],
   exports: [

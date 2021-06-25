@@ -15,43 +15,46 @@
         <div class="royo_recommends-produ">
             <div class="container">
                 <div class="row " *ngIf="!isLoading; else skeleton">
-                    <ng-container *ngIf="popularProducts && popularProducts.length; then data else noData">
+                    <!-- <ng-container *ngIf="popularProducts && popularProducts.length; then data else noData">
+                    </ng-container> -->
+                    <ng-container *ngIf="recentlyViewed && recentlyViewed.length; then data else noData">
                     </ng-container>
                     <ng-template #data>
-                        <div class="col-md-4 col-lg-3 col-sm-6 Recommends-products"
+                        <!-- <div class="col-md-4 col-lg-3 col-sm-6 Recommends-products"
                             *ngFor="let offer of popularProducts.slice(0,10);trackBy:trackByProductsFn;">
                             <app-product [product]="offer" [settings]="settings" [style]="style" [loggedIn]="loggedIn"
                                 (add)="addProduct($event)" (remove)="removeProduct($event)">
                             </app-product>
+                        </div> -->
+                        <!-- {{Array.isArray(recentlyViewed)}} -->
+                        <div class="product-container" (click)="getCurrentProduct(item);" *ngFor="let item of recentlyViewed" data-toggle="modal"
+                        data-target="#productDescription">
+                        <div class="head">
+                            <img src="/assets/images/plus.png" alt="" width="15" height="15"
+                                style="margin-right: -10px;">
                         </div>
+                        <div class="img">
+                            <img [src]="item.image_path"
+                                alt="" width="100" height="100">
+                        </div>
+                        <div class="desc">
+                            <div *ngIf="item.discount">
+                                <span class="discount">{{item.discount}}%</span>
+                            </div>
+                            <br style="padding: 0;">
+                            <div class="price">
+                                <span class="price1"> <span *ngIf="!item.discount">Price </span>{{item.price}} INR</span><span  *ngIf="item.discount" class="price2">was {{item.display_price}}</span>
+                            </div>
+                            <div>
+                                <span _ngcontent-website-js-c207="" class="weight-priceUnit">{{item.quantity ? item.quantity : 500}}{{item.measuring_unit? 'kg' : 'kg'}} &nbsp;
+                                    8.60/{{item.measuring_unit? 'kg' : 'kg'}}</span>
+                            </div>
+                            <app-quantity-buttons [style]="style" [settings]="settings">
+                            </app-quantity-buttons>
+                        </div>
+                    </div>
                     </ng-template>
-                    <ng-template #noData>
-                        <div class="product-container" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]" data-toggle="modal"
-                            data-target="#productDescription">
-                            <div class="head">
-                                <img src="/assets/images/plus.png" alt="" width="15" height="15"
-                                    style="    margin-right: -10px;">
-                            </div>
-                            <div class="img">
-                                <img src="https://www.pngitem.com/pimgs/m/160-1607211_dr-ko-product-hd-png-download.png "
-                                    alt="" width="100" height="100">
-                            </div>
-                            <div class="desc">
-                                <div>
-                                    <span class="discount">20%</span>
-                                </div>
-                                <br style="padding: 0;">
-                                <div class="price">
-                                    <span class="price1">430</span><span class="price2">was 600</span>
-                                </div>
-                                <div>
-                                    <span _ngcontent-website-js-c207="" class="weight-priceUnit">500g &nbsp;
-                                        8.60/kg</span>
-                                </div>
-                                <app-quantity-buttons [style]="style" [settings]="settings" @fade>
-                                </app-quantity-buttons>
-                            </div>
-                        </div>
+                    <ng-template #noData>                       
                         <!-- <div class="home-no-data">
                             <h4 [style.color]="style.baseColor">{{'No' | translate}} {{'product' | localization}}
                                 {{'Found' | translate}}</h4>
@@ -114,15 +117,29 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-7 img-shadow">
-                        <img src="https://www.pngitem.com/pimgs/m/160-1607211_dr-ko-product-hd-png-download.png " alt=""
+                        <img [src]="currentProduct.image_path" alt=""
                             width="100%" height="300">
                     </div>
                     <div class="col-md-5">
                         <div class="right-section" style="max-height: 15rem; overflow-y: scroll;">
-                            <span class="prod-name">Garnier Cream</span> <br>
+                            <span class="prod-name">{{currentProduct.name}}</span> <br>
                             <div class="sec">
                                 <span class="heading">Category</span><br>
-                                <span class="description">Fruits & VegetablesFruitsMelons, Pome Fruits & Other Fruits</span>
+                                <span class="description">{{currentProduct.category_name}}</span>
+                            </div>
+                            <div class="sec">
+                                <span class="heading">Description</span><br>
+                                <span class="description">{{currentProduct.product_desc}}</span>
+                            </div>
+                            <div class="sec">
+                                <span class="heading">Rating</span><br>
+                                <span class="description mr-2" *ngFor="let item of currentProduct?.avg_rating">
+                                    <img src="/assets/images/yellow_star.png" width="10" height="10" alt="">
+                                </span>
+                            </div>
+                            <div class="sec">
+                                <span class="heading">In Stock</span><br>
+                                <span class="description">{{currentProduct.availability==1 ? 'Available' : 'Not available'}}</span>
                             </div>
                             <div class="sec">
                                 <span class="heading">Storage</span><br>
@@ -155,21 +172,25 @@ Limmatstrasse 152
                                 </span>
                             </div>
                             <div class="sec">
-                                <span class="heading">Product ID: 6417278</span>
+                                <span class="heading">Delivery Charges</span><br>
+                                <span class="description">{{currentProduct.delivery_charges}} INR</span>
+                            </div>
+                            <div class="sec">
+                                <span class="heading">Product ID: {{currentProduct.product_id}}</span>
                             </div>
                         </div>
                         <div class="mt-4">
                             <div class="desc">
-                                <div style="color: white;">
-                                    <span class="discount">20%</span>
+                                <div *ngIf="currentProduct.discount">
+                                    <span class="discount">{{currentProduct.discount}}%</span>
                                 </div>
                                 <br style="padding: 0;">
                                 <div class="price">
-                                    <span class="price1">430</span><span class="price2">was 600</span>
+                                    <span class="price1"> <span *ngIf="!currentProduct.discount">Price </span>{{currentProduct.price}} INR</span><span  *ngIf="currentProduct.discount" class="price2">was {{currentProduct.display_price}}</span>
                                 </div>
                                 <div>
-                                    <span _ngcontent-website-js-c207="" class="weight-priceUnit">500g &nbsp;
-                                        8.60/kg</span>
+                                    <span _ngcontent-website-js-c207="" class="weight-priceUnit">{{currentProduct.quantity ? currentProduct.quantity : 500}}{{currentProduct.measuring_unit ? 'kg' : 'kg'}} &nbsp;
+                                        8.60/{{currentProduct.measuring_unit ? 'kg' : 'kg'}}</span>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-1">
                                     <button type="button" class="btn btn-primary" style="    background-color: rgb(250, 165, 28);
