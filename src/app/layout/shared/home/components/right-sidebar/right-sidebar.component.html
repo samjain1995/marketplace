@@ -1,8 +1,17 @@
-<h4 class="header">Loading</h4>
-<section style="margin-top: 4rem;">
-    <span>Already signed up at Migros Online?</span>
-    <button type="button" class="btn btn-primary mt-4">Log in or create your account</button>
-    <div class="btn-align">
-        <button type="button" class="btn btn-primary" disabled>Proceed to checkout</button>
+<div class="right-sidebar-section">
+    <div class="d-flex collapsed" *ngIf="isCollapsed">
+        <span class="header"></span>
+        <i class="fa fa-shopping-cart" (click)="setRightSidebarCollapseStatus()"></i>
     </div>
-</section>
+    <div class="d-flex expanded" *ngIf="!isCollapsed">
+        <span class="header">Loading</span>
+        <i class="fa fa-arrow-right" (click)="setRightSidebarCollapseStatus()"></i>
+    </div>
+    <section style="margin-top: 4rem; text-align: center;">
+        <span class="warn-text">Already signed up at Migros Online?</span>
+        <button type="button" class="btn btn-large mt-4" style="background-color: rgb(250, 165, 28); color: white;">Log in or create your account</button>
+        <div class="btn-align">
+            <button type="button" class="btn btn-large" disabled>Proceed to checkout</button>
+        </div>
+    </section>
+</div>

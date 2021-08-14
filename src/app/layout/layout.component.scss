@@ -10,3 +10,22 @@
         font-size: 16px !important;
     }
 }
+
+.cart-icon-right-side {
+    background-color: orange;
+    color: white;
+    height: 45px;
+    width: 52px;
+    position: absolute;
+    top: 6rem;
+    right: 0;
+    cursor: pointer;
+    box-shadow: 1px 1px 12px 5px #c7c780;
+    border-left: 2px solid white;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-radius: 25px 0px 0px 25px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

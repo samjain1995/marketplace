@@ -240,7 +240,7 @@ export class ThemeService implements OnDestroy {
         case 8:  //Home Service
           this.style.primaryColor = appColor.primaryColor || '#45AFB0';
           this.style.baseColor = appColor.baseColor || '#000000';
-          this.style.backgroundColor = '#f3f3f3';
+          this.style.backgroundColor = '#ffffff';
           this.style.cardBackgroundColor = '#f3f3f3';
           this.style.headerBackgroundColor = appColor.headerBackgroundColor;
           this.style.headerFontFamily = appColor.headerFontFamily;
@@ -265,7 +265,7 @@ export class ThemeService implements OnDestroy {
 
       if (this.settings.is_custom_category_template === '1') {
         // this.style.backgroundColor = "rgb(242 255 255)";
-        this.style.backgroundColor = "#f0f0f0";
+        this.style.backgroundColor = "#ffffff";
         this.style.footerColor = "#f0f0f0";
       }
 

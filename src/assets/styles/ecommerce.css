@@ -1,13 +1,20 @@
 /*--------img scrolling------------------*/
+
 .images-slides::-webkit-scrollbar {
   width: 1px;
-  height:6px;
+  height: 6px;
 }
+
 .images-slides::-webkit-scrollbar-thumb {
   background: #03b8b8;
 }
-.images-slides{cursor:all-scroll;}
+
+.images-slides {
+  cursor: all-scroll;
+}
+
 /*--------img scrolling end---------------*/
+
 .Royo_product-header {
   background: rgb(38, 75, 78);
   padding: 16px 0 13px;
@@ -20,6 +27,7 @@
   margin-top: 10px;
   font-size: 20px;
 }
+
 .expanding-search-form {
   position: relative;
   display: inline-block;
@@ -404,6 +412,7 @@ p.title_shoes {
 //   position: relative;
 //   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
 // } */
+
 ngx-image-zoom .ngxImageZoomContainer {
   position: relative;
   margin: auto;
@@ -412,7 +421,7 @@ ngx-image-zoom .ngxImageZoomContainer {
   height: 490px !important;
   position: relative;
   border: 1px solid rgba(37, 73, 77, 0.5);
-  border-radius: 25px; 
+  border-radius: 25px;
   /* box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3); */
 }
 
@@ -3181,7 +3190,7 @@ ul.nav.nav-tabs.small {
 }
 
 .new-top-header-left .select-area.dropdown {
-  margin-left: 10px;
+  margin-left:-21px;
 }
 
 .new-top-header-left .select-area-title {
@@ -3347,8 +3356,8 @@ ul.new-top-header-right {
 .mega-dropdown .dropdown-toggle {
   margin-top: 0px;
   padding: 11px 15px;
-  border: 1px solid var(--headerTextColor);
-  border-radius: 4px;
+  border: 1px solid #d3d5e0;
+  border-radius: 25px;
   color: var(--headerTextColor);
 }
 

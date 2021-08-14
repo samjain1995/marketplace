@@ -21,6 +21,7 @@ import { UserService } from '../services/user/user.service';
 import { AuthService } from 'angularx-social-login';
 import { Meta } from '@angular/platform-browser';
 import * as $ from 'jquery';
+import { RightSideBarToggleService } from './shared/layout-shared/services/right-side-bar-toggle.service';
 
 @Component({
   selector: "app-layout",
@@ -58,6 +59,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
   isBrowser: boolean = false;
   windowInnerWidth: number = 0;
   myflag: boolean = false;
+  public isCollapsed: boolean = false;
 
   constructor(
     private ngZone: NgZone,
@@ -73,7 +75,8 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
     @Inject(WINDOW) private window: Window,
     @Inject(PLATFORM_ID) private platformId: string,
     private firebaseAnalyticsSvc: FirebaseAnalyticsService,
-    private meta: Meta
+    private meta: Meta,
+    private rightSideBarToggleService: RightSideBarToggleService
   ) {
     this.body = new StyleConstants();
     this.style = new StyleVariables();
@@ -106,6 +109,17 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
       this.body.fontFamily = style.fontFamily;
       this.body.backgroundColor = style.backgroundColor;
     });
+
+    this.rightSideBarToggleService.getRightSidebarCollpased().subscribe(res => {
+     this.isCollapsed = res;
+    //  if(this.isCollapsed) {
+    //    $(".slide .banner-img").css('width', '100%')
+    //    $(".col-md-10").trigger('click');
+    //    $(".col-md-8").trigger('click');
+    //  } else {
+    //   $(".slide .banner-img").css('width', '79%')
+    //  }
+    })
 
     this.socialUserSubscription = this.user.logoutSocialUser
       .subscribe(logout => {
@@ -520,6 +534,10 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
     if (!!this.socialUserSubscription) this.socialUserSubscription.unsubscribe();
     if (!!this.locationSubscription) this.locationSubscription.unsubscribe();
     if (!!this.keySubscription) this.keySubscription.unsubscribe();
+  }
+
+  public setRightSidebarCollapseStatus() {
+    this.rightSideBarToggleService.setRightSidebarCollpased(!this.isCollapsed);
   }
 
 }

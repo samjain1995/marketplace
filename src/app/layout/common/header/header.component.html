@@ -59,13 +59,14 @@
                   </li>
                 </ul> -->
 
-                <app-function-list *ngIf="settings?.header_theme == 0 || settings?.header_theme == 2" class=" ml-auto" [ngClass]="settings.secondary_language != '0' ? 'inline-block' : ''"
+                <app-function-list *ngIf="settings?.header_theme == 0 || settings?.header_theme == 2" class=" ml-auto"
+                  [ngClass]="settings.secondary_language != '0' ? 'inline-block' : ''"
                   [userWalletBalance]="userWalletBalance" [showSearchbar]="showSearchbar" [loggedIn]="loggedIn"
                   [style]="style" [settings]="settings" [openAuth]="openAuth" [userData]="userData"
                   (searchBar)="showSearchbar = $event" (triggerAuthModal)="openAuth = $event"
                   (authType)="authType = $event"></app-function-list>
 
-                  <app-language class="inline-block" *ngIf="settings.secondary_language != '0'" [style]="style"
+                <app-language class="inline-block" *ngIf="settings.secondary_language != '0'" [style]="style"
                   [settings]="settings"></app-language>
               </div>
 
@@ -76,13 +77,8 @@
 
       <ng-template ngSwitchDefault>
 
-        <app-top-header [showSearchbar]="showSearchbar" [loggedIn]="loggedIn" [style]="style" [settings]="settings"
-          [userData]="userData" [openAuth]="openAuth" (searchBar)="showSearchbar = $event"
-          (triggerAuthModal)="openAuth = $event" (authType)="authType = $event"></app-top-header>
-
-        <nav class="navbar navbar-expand-md"
-          [style.background-color]="settings?.app_type == 7 ? '#4A4A4A' : is_dark ?  style.backgroundColor : style?.headerBackgroundColor || style.backgroundColor"
-          [ngClass]="isNavFixed ? 'fix' : ''">
+        <!-- [style.background-color]="settings?.app_type == 7 ? '#4A4A4A' : is_dark ?  style.backgroundColor : style?.headerBackgroundColor || style.backgroundColor" -->
+        <nav class="navbar navbar-expand-md" style="background-color: white;" [ngClass]="isNavFixed ? 'fix' : ''">
           <div class="container-fluid">
             <div class="row w-100">
               <div class="col-md-2 col-6">
@@ -106,15 +102,20 @@
                     [ngClass]="settings?.web_custom_domain_theme == 1 && settings?.app_type > 10 ? 'col-md-6' : 'col-md-8'">
                     <div class="menu_div_left">
                       <div class="header-middel ecom-header" *ngIf="settings?.app_type <= 10">
-                        <app-categories class="mt-3" *ngIf="settings?.app_type == 2"></app-categories>
-                        <div class="w-100 mt-1">
+                        <div class="w-50 mt-1">
                           <app-search [settings]="settings" [style]="style" [searchBy]="searchBy"></app-search>
                         </div>
+                        <app-categories class="mt-3 ml-4" *ngIf="settings?.app_type == 2"></app-categories>
+                        <app-top-header [showSearchbar]="showSearchbar" [loggedIn]="loggedIn" [style]="style"
+                          [settings]="settings" [userData]="userData" [openAuth]="openAuth"
+                          (searchBar)="showSearchbar = $event" (triggerAuthModal)="openAuth = $event"
+                          (authType)="authType = $event"></app-top-header>
                       </div>
 
                       <div *ngIf="settings?.app_type > 10 && settings?.web_custom_domain_theme == 0">
                         <ul class="header-links">
-                          <li *ngFor="let category of categories;trackBy:trackByFn;" (click)="onCategorySelect(category)">
+                          <li *ngFor="let category of categories;trackBy:trackByFn;"
+                            (click)="onCategorySelect(category)">
                             <a>
                               <img [src]="category.icon" class="header-icon">
                               <h3>{{category?.name}}
@@ -145,9 +146,9 @@
                             [settings]="settings" [openAuth]="openAuth" (searchBar)="showSearchbar = $event"
                             (triggerAuthModal)="openAuth = $event" (authType)="authType = $event"
                             (sideNavToggle)="sidenav = $event;"></app-function-list>
-                            <div style="background-color: #eff2f5;">
-                              <app-product-sidebar *ngIf="myflag" [sidenav]="sidenav"></app-product-sidebar>
-                            </div>
+                          <div style="background-color: #eff2f5;">
+                            <app-product-sidebar *ngIf="myflag" [sidenav]="sidenav"></app-product-sidebar>
+                          </div>
                           <div *ngIf="showSearchbar">
                             <form autocomplete="off" class="dropdown_resp">
                               <input class="dropdown-toggle" type="text"

@@ -44,17 +44,18 @@
 
         <ng-template [ngSwitchCase]="0">
           <ul (clickOutside)="onClickedOutside()">
-            <li class="welcome_note" [style.color]="setTextColor()"
+            <!-- <li class="welcome_note" [style.color]="setTextColor()"
               style="width: auto; margin-right: 14px; padding: 10px;">
               {{client_code === '4n1delivery_0654' ? (userDetails?.firstname ? userDetails?.firstname : 'Welcome Guest')
               : (('Welcome To' | translate) + ' ' + site_name)}}
-            </li> <!-- <span style="margin-left: -15px" [style.color]="style?.headerTextColor">|</span> -->
+            </li>  -->
+            <!-- <span style="margin-left: -15px" [style.color]="style?.headerTextColor">|</span> -->
             <li class="select-area-outter">
-              <div class="select-area dropdown" [style.backgroundColor]="setBackgroundColor()">
-                <div class="ellipsis" style="width: 300px;">
-                  <a class="select-area-title cursor"
-                    [style.color]="style?.topHeaderTextColor || style?.headerTextColor"
-                    (click)="locationToggle = !locationToggle">
+              <!-- [style.backgroundColor]="setBackgroundColor()" -->
+              <div class="select-area dropdown text-truncate">
+                <div class="ellipsis">
+                  <!-- [style.color]="style?.topHeaderTextColor || style?.headerTextColor" -->
+                  <a class="select-area-title cursor" (click)="locationToggle = !locationToggle">
                     <img src="assets/images/ic_location_white1.svg">
                     <span [title]="selectedLocation" data-toggle="tooltip"
                       [style.color]="setTextColor()">{{selectedLocation}}</span>
@@ -95,6 +96,7 @@
 
         </ng-template>
 
+        
         <ng-template [ngSwitchCase]="2">
           <ul (clickOutside)="onClickedOutside()">
             <!-- <span style="margin-left: -15px" [style.color]="style?.headerTextColor">|</span> -->

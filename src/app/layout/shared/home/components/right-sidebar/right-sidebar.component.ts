@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RightSideBarToggleService } from '../../../layout-shared/services/right-side-bar-toggle.service';
 
 @Component({
   selector: 'app-right-sidebar',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RightSidebarComponent implements OnInit {
 
-  constructor() { }
+  public isCollapsed: boolean = false;
+
+  constructor(private rightSideBarToggleService: RightSideBarToggleService) {}
 
   ngOnInit() {
+    this.rightSideBarToggleService.getRightSidebarCollpased().subscribe(res => {
+      this.isCollapsed = res;
+     })
   }
 
+  public setRightSidebarCollapseStatus() {
+    this.isCollapsed = !this.isCollapsed;
+    this.rightSideBarToggleService.setRightSidebarCollpased(this.isCollapsed);
+  }
 }

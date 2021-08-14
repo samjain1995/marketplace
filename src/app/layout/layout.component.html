@@ -4,17 +4,17 @@
     <div class="offset_top"></div>
 
     <div class="row full-dashboard">
-        <div class="col-md-2" *ngIf="!myflag" style="overflow: scroll; height: 100vh; background-color: #eff2f5;">
+        <div class="col-md-2" *ngIf="!myflag" style="overflow: scroll; height: 100vh; background-color: #fdfdfd; padding-top: 1rem;">
             <app-product-sidebar (sidenav)="sidenav=$event"></app-product-sidebar>
         </div>
-        <div [ngClass]="myflag ? 'col-md-10' : 'col-md-8'" style="overflow: scroll; height: 100vh; padding-top: 1rem;">
+        <div [ngClass]="myflag || isCollapsed? 'col-md-10' : 'col-md-8'" style="overflow: scroll; height: 100vh; padding-top: 1rem;">
             <div [ngClass]="nav_fixed && !isMobile ? 'fix-section' : (isMobile ? 'mobile-top-bottom-margin' : '')"
                 [style.backgroundImage]="layout_background">
                 <router-outlet (activate)="util.goToTop()"></router-outlet>
             </div>
             <app-footer></app-footer>
         </div>
-        <div class="col-md-2" style="overflow: scroll; height: 100vh; background-color: #eff2f5;">
+        <div class="col-md-2" style="overflow: scroll; height: 100vh; background-color: #fdfdfd;">
             <app-right-sidebar></app-right-sidebar>
         </div>
     </div>
@@ -58,3 +58,7 @@
 <app-toast *ngIf="isBrowser" [settings]="settings"></app-toast>
 
 <app-processing-indicator *ngIf="isLoading"></app-processing-indicator>
+
+<div class="cart-icon-right-side" *ngIf="isCollapsed" (click)="setRightSidebarCollapseStatus()">
+    <i class="fa fa-shopping-cart" style="font-size: 27px;" (click)="setRightSidebarCollapseStatus()"></i>
+</div>

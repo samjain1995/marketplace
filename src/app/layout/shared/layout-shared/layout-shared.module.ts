@@ -47,6 +47,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { SkeletonModule } from './skeletons/skeleton.module';
 import { LoaderSharedModule } from './components/processing-indicator/loader-shared.module';
 import { CommonModule } from '@angular/common';
+import { RightSideBarToggleService } from './services/right-side-bar-toggle.service';
 
 
 const directives = [
@@ -115,6 +116,7 @@ const components = [
     SkeletonModule,
     LoaderSharedModule
   ],
+  providers: [RightSideBarToggleService],
   exports: [
     RatingModule,
     SidebarModule,
