@@ -170,7 +170,8 @@
 </ng-template>
 
 <ng-template #common>
-    <form autocomplete="off" class="dropdown" *ngIf="settings?.selected_template != 5">
+    <!-- *ngIf="settings?.selected_template != 5" -->
+    <form autocomplete="off" class="dropdown">
         <div class="header-search-box">
             <div class="radio-btn-div" *ngIf="settings.search_by == 2 && settings?.is_unify_search == 0">
                 <div class="custom-search-radio">

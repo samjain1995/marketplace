@@ -52,13 +52,13 @@
             <!-- <span style="margin-left: -15px" [style.color]="style?.headerTextColor">|</span> -->
             <li class="select-area-outter">
               <!-- [style.backgroundColor]="setBackgroundColor()" -->
-              <div class="select-area dropdown text-truncate">
+              <div class="select-area dropdown">
                 <div class="ellipsis">
                   <!-- [style.color]="style?.topHeaderTextColor || style?.headerTextColor" -->
                   <a class="select-area-title cursor" (click)="locationToggle = !locationToggle">
                     <img src="assets/images/ic_location_white1.svg">
                     <span [title]="selectedLocation" data-toggle="tooltip"
-                      [style.color]="setTextColor()">{{selectedLocation}}</span>
+                      [style.color]="setTextColor()">{{selectedLocation.length > 10 ? selectedLocation.slice(0, 11) + '...' : selectedLocation }}</span>
                     <i *ngIf="selectedLocation" class="fa fa-caret-down"
                       [style.color]="style?.topHeaderTextColor || style?.headerTextColor" aria-hidden="true"
                       (click)="locationToggle = !locationToggle"></i>

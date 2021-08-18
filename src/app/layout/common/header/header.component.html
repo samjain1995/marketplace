@@ -137,7 +137,7 @@
                       <div class="menu_div_inner">
                         <span class="open_menu" (click)="sidenav = 1">&#9776;
                         </span>
-                        <div id="mySidenav" class="home_sidenav" [style.background-color]="'transparent'"
+                        <div id="mySidenav" class="home_sidenav" style="background-color: #fdfdfd;"
                           [style.width]="sidenav != 0  ? sidenav == 1 ? '250px' : '0px' : ''">
                           <a href="javascript:void(0)" class="closebtn" (click)="sidenav = 2">&times;</a>
                           <app-function-list *ngIf="settings?.header_theme == 0 || settings?.header_theme == 2"
